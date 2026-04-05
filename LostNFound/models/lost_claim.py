@@ -31,6 +31,22 @@ class LostClaim(models.Model):
 
     # The Link! (This connects the Claim to the Found Item)
     matched_item_id = fields.Many2one('found.item', string="Matched Found Item", readonly=True)
+    matched_item_name = fields.Char(string="Item Name", compute="_compute_matched_details")
+    matched_item_location = fields.Char(string="Found At", compute="_compute_matched_details")
+    matched_item_photo = fields.Image(string="Photo", compute="_compute_matched_details")
+    
+    @api.depends('matched_item_id')
+    def _compute_matched_details(self):
+        for claim in self:
+            if claim.matched_item_id:
+                secure_item = claim.matched_item_id.sudo()
+                claim.matched_item_name = secure_item.name
+                claim.matched_item_location = secure_item.location
+                claim.matched_item_photo = secure_item.photo
+            else:
+                claim.matched_item_name = False
+                claim.matched_item_location = False
+                claim.matched_item_photo = False
 
     status = fields.Selection([
         ('submitted', 'Submitted'),
@@ -44,7 +60,7 @@ class LostClaim(models.Model):
                 if not claim.tag_ids:
                     continue
 
-                match = self.env['found.item'].search([
+                match = self.env['found.item'].sudo().search([
                     ('status', '=', 'logged'),               
                     ('tag_ids', 'in', claim.tag_ids.ids),
                     ('name','ilike',claim.name)    
@@ -53,7 +69,7 @@ class LostClaim(models.Model):
                 if match:
                     claim.matched_item_id = match.id
                     claim.status = 'matched'
-                    match.status = 'matched' 
+                    match.sudo().status = 'matched' 
 
                     # We check if the student actually provided an email
                     if claim.contact_email:
@@ -65,7 +81,7 @@ class LostClaim(models.Model):
                             It was found near: {match.location}.<br><br>
                             Please come to the campus security desk with your student ID to claim it.
                         """
-                        self.env['mail.mail'].create({
+                        self.env['mail.mail'].sudo().create({
                                 'subject': subject,
                                 'body_html': body,
                                 'email_to': claim.contact_email,
