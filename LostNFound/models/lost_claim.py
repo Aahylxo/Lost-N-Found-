@@ -87,3 +87,12 @@ class LostClaim(models.Model):
                                 'email_to': claim.contact_email,
                         }).send()
             return True
+    def action_investigate(self):
+        for claim in self:
+            claim.status = 'investigating'
+        return True
+
+    def action_close(self):
+        for claim in self:
+            claim.status = 'closed'
+        return True
