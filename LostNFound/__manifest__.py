@@ -9,6 +9,7 @@
     "depends":["base","mail"],
     "application": True,
     "data":[
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/found_item_views.xml',
         'views/lost_claim_views.xml',
