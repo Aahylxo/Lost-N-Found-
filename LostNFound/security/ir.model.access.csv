@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_found_item,access.found.item,model_found_item,base.group_user,1,1,1,1
+access_found_item,access.found.item,model_found_item,LostNFound.group_lostnfound_staff,1,1,1,1
 access_item_tag,access.item.tag,model_item_tag,base.group_user,1,1,1,1
-access_lost_claim,access.lost.claim,model_lost_claim,base.group_user,1,1,1,1
+access_lost_claim,access.lost.claim,model_lost_claim,,1,1,1,1
