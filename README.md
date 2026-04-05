@@ -1,2 +1,2 @@
 # Lost-N-Found-
-Lost 'N' Found is a odoo module 
+Lost 'N' Found is an odoo erp system which helps in an institution where if a person loses one of their things, it minimizes the workload on a security guard who normally takes care of the lost and found item, to label, find, and recognize their owner leaving the final judgement upon the security guard. The erp system is bulletproof with what the normal students can see and what the staff can see has been put up for security purposes.
