@@ -2,11 +2,74 @@
     <record id="found_item_action" model="ir.actions.act_window">
         <field name="name">Found Items</field>
         <field name="res_model">found.item</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form,graph</field>
+
     </record>
 
     <menuitem id="lost_and_found_menu_root" name="Lost &amp; Found"/>
     <menuitem id="found_item_menu" name="Found Items" parent="lost_and_found_menu_root" action="found_item_action"/>
+    <menuitem id="found_item_dashboard_menu" name="Dashboard" parent="lost_and_found_menu_root" action="found_item_action" sequence="5"/>
+
+    <record id="found_item_view_graph" model="ir.ui.view">
+        <field name="name">found.item.graph</field>
+        <field name="model">found.item</field>
+        <field name="arch" type="xml">
+            <graph string="Found Items Analysis" type="bar" sample="1">
+                <field name="status" type="row"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="found_item_view_kanban" model="ir.ui.view">
+            <field name="name">found.item.kanban</field>
+            <field name="model">found.item</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="status">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="photo"/>
+                    <field name="tag_ids"/>
+                    <field name="location"/>
+                    <field name="date"/>
+                    
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click d-flex align-items-center">
+                                
+                                <div class="o_kanban_image_container d-flex align-items-center justify-content-center"
+                                    style="width: 120px; height: 120px; min-width: 120px; overflow: hidden; border-radius: 8px; border: 1px solid #dee2e6; margin-right: 15px;">
+                                    <t t-if="record.photo.raw_value">
+                                        <field name="photo" 
+                                            widget="image" 
+                                            options="{'preview_image': 'photo'}"
+                                            style="width: 100%; height: 100%; object-fit: cover; display: block;"/>
+                                    </t>
+                                    <t t-if="!record.photo.raw_value">
+                                        <span class="fa fa-camera fa-3x text-muted"/>
+                                    </t>
+                                </div>
+                                
+                                <div class="oe_kanban_details flex-grow-1">
+                                    <strong class="o_kanban_record_title" style="font-size: 16px; font-weight: bold; margin-bottom: 6px; display: block;">
+                                        <field name="name"/>
+                                    </strong>
+                                    
+                                    <div style="margin-bottom: 6px;">
+                                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    </div>
+                                    
+                                    <div class="text-muted" style="font-size: 13px;">
+                                        <div><i class="fa fa-map-marker" style="margin-right: 5px;"/> <field name="location"/></div>
+                                        <div><i class="fa fa-calendar" style="margin-right: 5px;"/> <field name="date"/></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
 
     <record id="found_item_view_list" model="ir.ui.view">
         <field name="name">found.item.list</field>
@@ -15,7 +78,7 @@
             <list>
                 <field name="ref_id"/>
                 <field name="name"/>
-                <field name="category"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="status"/>
             </list>
         </field>
@@ -36,7 +99,7 @@
                     <group>
                         <field name="ref_id"/>
                         <field name="name"/>
-                        <field name="category"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         <field name="location"/>
                         <field name="date"/>
                         <field name="photo" widget="image"/>
