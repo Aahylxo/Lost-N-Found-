@@ -7,8 +7,8 @@
     </record>
 
     <menuitem id="lost_and_found_menu_root" name="Lost &amp; Found"/>
-    <menuitem id="found_item_menu" name="Found Items" parent="lost_and_found_menu_root" action="found_item_action"/>
-    <menuitem id="found_item_dashboard_menu" name="Dashboard" parent="lost_and_found_menu_root" action="found_item_action" sequence="5"/>
+    <menuitem id="found_item_menu" name="Found Items" parent="lost_and_found_menu_root" action="found_item_action" groups="LostNFound.group_lostnfound_staff"/>
+    <menuitem id="found_item_dashboard_menu" name="Dashboard" parent="lost_and_found_menu_root" action="found_item_action" sequence="5" groups="LostNFound.group_lostnfound_staff"/>
 
     <record id="found_item_view_graph" model="ir.ui.view">
         <field name="name">found.item.graph</field>
