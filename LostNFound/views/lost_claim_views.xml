@@ -50,9 +50,12 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Match Results">
+                        <page string="Match Results" invisible="not matched_item_id">
                             <group>
-                                <field name="matched_item_id"/> 
+                                <field name="matched_item_id" options="{'no_open':True}"/> 
+                                <field name="matched_item_name"/>
+                                <field name="matched_item_location"/>
+                                <field name="matched_item_photo" widget="image" options="{'size':[150,150]}"/>
                             </group>
                         </page>
                     </notebook>
