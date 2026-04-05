@@ -1,0 +1,63 @@
+<odoo>
+    <record id="lost_claim_action" model="ir.actions.act_window">
+        <field name="name">Lost Claims</field>
+        <field name="res_model">lost.claim</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="lost_claim_menu" 
+              name="Lost Claims" 
+              parent="lost_and_found_menu_root" 
+              action="lost_claim_action" 
+              sequence="20"/>
+
+    <record id="lost_claim_view_list" model="ir.ui.view">
+        <field name="name">lost.claim.list</field>
+        <field name="model">lost.claim</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="person_name"/>
+                <field name="name"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="date_lost"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="lost_claim_view_form" model="ir.ui.view">
+        <field name="name">lost.claim.form</field>
+        <field name="model">lost.claim</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_find_match" type="object" string="Run Auto-Match" class="oe_highlight" invisible="status != 'submitted'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="submitted,investigating,matched,closed" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Blue Water Bottle"/></h1>
+                    </div>
+                    <group>
+                        <group string="Student Info">
+                            <field name="person_name"/>
+                            <field name="contact_email"/>
+                        </group>
+                        <group string="Item Details">
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="date_lost"/>
+                            <field name="location"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Match Results">
+                            <group>
+                                <field name="matched_item_id"/> 
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
