@@ -6,11 +6,11 @@ Managing lost items on a busy campus is traditionally chaotic. Security staff re
 
 ✨ Key Features
 For Campus Security / Staff:👮
--Centralized Found Item Logging: Easily log found items with photos, locations, dates, and descriptive tags.
--Automated Tracking IDs: The system automatically generates unique, sequential reference IDs (e.g., FND/001) for every logged item to keep physical storage organized.
--Visual Kanban Dashboard: A clean, card-based Kanban view allows staff to track the status of items (Logged, Matched, Resolved, Donated) at a glance.
--Role-Based Access Control: Dedicated "Lost and Found Staff" security groups ensure only authorized personnel can resolve or donate items.
--Audit Trail & Chatter: Full integration with Odoo's internal messaging (mail.thread and mail.activity.mixin) keeps a permanent history of internal notes and status changes.
+- Centralized Found Item Logging: Easily log found items with photos, locations, dates, and descriptive tags.
+- Automated Tracking IDs: The system automatically generates unique, sequential reference IDs (e.g., FND/001) for every logged item to keep physical storage organized.
+- Visual Kanban Dashboard: A clean, card-based Kanban view allows staff to track the status of items (Logged, Matched, Resolved, Donated) at a glance.
+- Role-Based Access Control: Dedicated "Lost and Found Staff" security groups ensure only authorized personnel can resolve or donate items.
+- Audit Trail & Chatter: Full integration with Odoo's internal messaging (mail.thread and mail.activity.mixin) keeps a permanent history of internal notes and status changes.
 
 For Students / Claimants:🧑‍🎓
 -Digital Claim Submission: Students can submit detailed "Lost Claims" including their contact info, item descriptions, tags, and suspected loss locations.
