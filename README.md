@@ -13,8 +13,8 @@ For Campus Security / Staff:👮
 - Audit Trail & Chatter: Full integration with Odoo's internal messaging (mail.thread and mail.activity.mixin) keeps a permanent history of internal notes and status changes.
 
 For Students / Claimants:🧑‍🎓
--Digital Claim Submission: Students can submit detailed "Lost Claims" including their contact info, item descriptions, tags, and suspected loss locations.
--Automated Email Notifications: When the system finds a match, it automatically dispatches an HTML email to the student with instructions on where to pick up their item.📩
+- Digital Claim Submission: Students can submit detailed "Lost Claims" including their contact info, item descriptions, tags, and suspected loss locations.
+- Automated Email Notifications: When the system finds a match, it automatically dispatches an HTML email to the student with instructions on where to pick up their item.📩
 
 The Auto-Match Engine (Core Logic):
 Staff can trigger an intelligent matching algorithm on any submitted claim.
